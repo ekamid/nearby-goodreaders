@@ -1,9 +1,19 @@
 import React from 'react'
+import { createRoot } from 'react-dom/client'
 
-const PopupWrapper = () => {
-    return (
-        <div>PopupWrapper</div>
-    )
+import '../styles/global.scss'
+
+import PopupWrapper from "./popup-wrapper"
+
+function init() {
+    const appContainer = document.createElement('div')
+    appContainer.classList.add('app-wrapper')
+    document.body.appendChild(appContainer)
+    if (!appContainer) {
+        throw new Error('Can not find AppContainer')
+    }
+    const root = createRoot(appContainer)
+    root.render(<PopupWrapper />)
 }
 
-export default PopupWrapper
+init()
