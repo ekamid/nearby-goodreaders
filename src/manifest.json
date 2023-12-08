@@ -1,0 +1,56 @@
+{
+    "manifest_version": 3,
+    "name": "Nearby Goodreaders",
+    "description": "A Chrome extension that connects you with nearby Goodreads users and lets you explore the books they own and request those effortlessly",
+    "version": "1.0.1",
+    "action": {
+        "default_title": "Nearby Goodreaders",
+        "default_popup": "popup.html",
+        "default_icon": {
+            "16": "assets/icons/16.png",
+            "32": "assets/icons/32.png",
+            "128": "assets/icons/192.png"
+        }
+    },
+    "icons": {
+        "16": "assets/icons/16.png",
+        "32": "assets/icons/32.png",
+        "128": "assets/icons/192.png"
+    },
+    "options_page": "options.html",
+    "background": {
+        "service_worker": "background.js"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "https://www.goodreads.com/book/show/*",
+                "https://goodreads.com/book/show/*"
+            ],
+            "js": [
+                "content_scripts.js"
+            ],
+            "run_at": "document_idle"
+        }
+    ],
+    "web_accessible_resources": [
+        {
+            "matches": [
+                "<all_urls>"
+            ],
+            "resources": [
+                "assets/*"
+            ]
+        }
+    ],
+    "host_permissions": [
+        "*://*.goodreads.com/book/show/*",
+        "*://*.goodreads.com/book/show/*"
+    ],
+    "permissions": [
+        "storage"
+    ],
+    "chrome_url_overrides": {
+        "settings": "books.html"
+    }
+}
